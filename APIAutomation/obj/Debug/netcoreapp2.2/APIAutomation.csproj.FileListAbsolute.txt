@@ -1,0 +1,12 @@
+C:\Users\lilit.shirvanyan\Desktop\APITest\APIAutomation\APIAutomation\bin\Debug\netcoreapp2.2\NUnit3.TestAdapter.dll
+C:\Users\lilit.shirvanyan\Desktop\APITest\APIAutomation\APIAutomation\bin\Debug\netcoreapp2.2\NUnit3.TestAdapter.pdb
+C:\Users\lilit.shirvanyan\Desktop\APITest\APIAutomation\APIAutomation\bin\Debug\netcoreapp2.2\nunit.engine.netstandard.dll
+C:\Users\lilit.shirvanyan\Desktop\APITest\APIAutomation\APIAutomation\bin\Debug\netcoreapp2.2\APIAutomation.dll.config
+C:\Users\lilit.shirvanyan\Desktop\APITest\APIAutomation\APIAutomation\bin\Debug\netcoreapp2.2\APIAutomation.deps.json
+C:\Users\lilit.shirvanyan\Desktop\APITest\APIAutomation\APIAutomation\bin\Debug\netcoreapp2.2\APIAutomation.runtimeconfig.json
+C:\Users\lilit.shirvanyan\Desktop\APITest\APIAutomation\APIAutomation\bin\Debug\netcoreapp2.2\APIAutomation.runtimeconfig.dev.json
+C:\Users\lilit.shirvanyan\Desktop\APITest\APIAutomation\APIAutomation\bin\Debug\netcoreapp2.2\APIAutomation.dll
+C:\Users\lilit.shirvanyan\Desktop\APITest\APIAutomation\APIAutomation\obj\Debug\netcoreapp2.2\APIAutomation.csprojAssemblyReference.cache
+C:\Users\lilit.shirvanyan\Desktop\APITest\APIAutomation\APIAutomation\obj\Debug\netcoreapp2.2\APIAutomation.csproj.CoreCompileInputs.cache
+C:\Users\lilit.shirvanyan\Desktop\APITest\APIAutomation\APIAutomation\obj\Debug\netcoreapp2.2\APIAutomation.AssemblyInfoInputs.cache
+C:\Users\lilit.shirvanyan\Desktop\APITest\APIAutomation\APIAutomation\obj\Debug\netcoreapp2.2\APIAutomation.AssemblyInfo.cs
