@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Microsoft.Extensions.Configuration;
+using NUnit.Framework;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -10,18 +11,20 @@ namespace APIAutomation
 {
     public abstract class ApiClientBase
     {
-        private string baseUrl = ConfigurationManager.AppSettings["BaseUrl"];
-        protected string Token
+        private string baseUrl;
+        public string Token { get; set; }
+        public ApiClientBase()
         {
-            get
-            {
-                return ConfigurationManager.AppSettings["Token"];
-            }
+            var config = new ConfigurationBuilder()
+                          .AddJsonFile("appsettings.json")
+                          .Build();
+            baseUrl = config["BaseUrl"];
+            Token = config["Token"];
         }
 
         protected abstract void AddRequestBody(object body, RestRequest req);
         protected abstract void AddRequestHeaders(RestRequest req);
-        public void ExecuteRequest(string resource, Method requestType, object body)
+        public void ExecuteRequest(string resource, Method requestType, object body=null)
         {
             try
             {
@@ -33,7 +36,7 @@ namespace APIAutomation
                 var response = restClient.Execute(request);
                 if (!response.StatusCode.Equals(HttpStatusCode.OK))
                 {
-                    Assert.Fail($"Failed {request.GetType()} Request with {response.StatusCode} code");
+                    Assert.Fail($"Failed {requestType} Request with {response.StatusCode} code");
                 }
             }
             catch (Exception ex)
@@ -47,7 +50,10 @@ namespace APIAutomation
     {
         protected override void AddRequestBody(object body, RestRequest request)
         {
-            request.AddXmlBody(body);
+            if(body != null)
+            {
+                request.AddXmlBody(body);
+            }
         }
 
         protected override void AddRequestHeaders(RestRequest request)
@@ -61,7 +67,10 @@ namespace APIAutomation
     {
         protected override void AddRequestBody(object body, RestRequest request)
         {
-            request.AddJsonBody(body);
+            if(body != null)
+            {
+                request.AddJsonBody(body);
+            }
         }
 
         protected override void AddRequestHeaders(RestRequest request)

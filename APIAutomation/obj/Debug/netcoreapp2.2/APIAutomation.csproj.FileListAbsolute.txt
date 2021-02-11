@@ -10,3 +10,7 @@ C:\Users\lilit.shirvanyan\Desktop\APITest\APIAutomation\APIAutomation\obj\Debug\
 C:\Users\lilit.shirvanyan\Desktop\APITest\APIAutomation\APIAutomation\obj\Debug\netcoreapp2.2\APIAutomation.csproj.CoreCompileInputs.cache
 C:\Users\lilit.shirvanyan\Desktop\APITest\APIAutomation\APIAutomation\obj\Debug\netcoreapp2.2\APIAutomation.AssemblyInfoInputs.cache
 C:\Users\lilit.shirvanyan\Desktop\APITest\APIAutomation\APIAutomation\obj\Debug\netcoreapp2.2\APIAutomation.AssemblyInfo.cs
+C:\Users\lilit.shirvanyan\Desktop\APITest\APIAutomation\APIAutomation\bin\Debug\netcoreapp2.2\appsettings.json
+C:\Users\lilit.shirvanyan\Desktop\APITest\APIAutomation\APIAutomation\bin\Debug\netcoreapp2.2\APIAutomation.pdb
+C:\Users\lilit.shirvanyan\Desktop\APITest\APIAutomation\APIAutomation\obj\Debug\netcoreapp2.2\APIAutomation.dll
+C:\Users\lilit.shirvanyan\Desktop\APITest\APIAutomation\APIAutomation\obj\Debug\netcoreapp2.2\APIAutomation.pdb
