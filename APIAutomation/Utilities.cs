@@ -35,5 +35,30 @@ namespace APIAutomation
             }
             return user;
         }
+        public static Todo GetTodoListFromDB(int id)
+        {
+            Todo toDoList = new Todo();
+            string querySelect = $@"select * from Todos where id = {id}";
+            using (SqlConnection conn = Database.DatabaseConnect())
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(querySelect, conn))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            toDoList.Id = reader.GetInt32(0);
+                            toDoList.UserId = reader.GetInt32(1);
+                            toDoList.Title = reader.GetString(2);
+                            toDoList.Completed = reader.GetBoolean(3);
+                            toDoList.CreatedAt = reader.GetDateTime(4);
+                            toDoList.UpdatedAt = reader.GetDateTime(5);
+                        }
+                    }
+                }
+            }
+            return toDoList;
+        }
     }
 }
