@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Net;
 using System.Text;
+using System.Text.Json;
+using System.Text.RegularExpressions;
+using System.Xml.Serialization;
 
 namespace APIAutomation
 {
@@ -24,8 +27,27 @@ namespace APIAutomation
 
         protected abstract void AddRequestBody(object body, RestRequest req);
         protected abstract void AddRequestHeaders(RestRequest req);
-        public void ExecuteRequest(string resource, Method requestType, object body=null)
+        public ApiResponse<T> ExecuteGet<T>(string resource, Method requestType)
         {
+            ApiResponse<T> res = null;
+            try
+            {
+                var restClient = new RestClient(baseUrl);
+                restClient.ClearHandlers();
+                var request = new RestRequest(resource, requestType);
+                AddRequestHeaders(request);
+                var response = restClient.Execute(request);
+                res = JsonSerializer.Deserialize<ApiResponse<T>>(response.Content);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+            return res;
+        }
+        public HttpStatusCode ExecutePost(string resource, Method requestType, object body)
+        {
+            HttpStatusCode statusCode = HttpStatusCode.BadRequest;
             try
             {
                 var restClient = new RestClient(baseUrl);
@@ -34,26 +56,57 @@ namespace APIAutomation
                 AddRequestHeaders(request);
                 AddRequestBody(body, request);
                 var response = restClient.Execute(request);
-                if (!response.StatusCode.Equals(HttpStatusCode.OK))
-                {
-                    Assert.Fail($"Failed {requestType} Request with {response.StatusCode} code");
-                }
+                statusCode = response.StatusCode;
             }
             catch (Exception ex)
             {
                 Assert.Fail(ex.Message);
             }
+            return statusCode;
         }
+        public HttpStatusCode ExecuteDelete(string resource, Method requestType)
+        {
+            HttpStatusCode statusCode = HttpStatusCode.BadRequest;
+            try
+            {
+                var restClient = new RestClient(baseUrl);
+                restClient.ClearHandlers();
+                var request = new RestRequest(resource, requestType);
+                AddRequestHeaders(request);
+                var response = restClient.Execute(request);
+                statusCode = response.StatusCode;
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+            return statusCode;
+        }
+        public HttpStatusCode ExecuteHead(string resource, Method requestType)
+        {
+            HttpStatusCode statusCode = HttpStatusCode.BadRequest;
+            try
+            {
+                var restClient = new RestClient(baseUrl);
+                restClient.ClearHandlers();
+                var request = new RestRequest(resource, requestType);
+                AddRequestHeaders(request);
+                var response = restClient.Execute(request);
+                statusCode = response.StatusCode;
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail(ex.Message);
+            }
+            return statusCode;
+        }       
     }
 
     public class XmlApiClient : ApiClientBase
     {
         protected override void AddRequestBody(object body, RestRequest request)
         {
-            if(body != null)
-            {
-                request.AddXmlBody(body);
-            }
+            request.AddXmlBody(body);
         }
 
         protected override void AddRequestHeaders(RestRequest request)
@@ -67,10 +120,7 @@ namespace APIAutomation
     {
         protected override void AddRequestBody(object body, RestRequest request)
         {
-            if(body != null)
-            {
-                request.AddJsonBody(body);
-            }
+            request.AddJsonBody(body);
         }
 
         protected override void AddRequestHeaders(RestRequest request)
@@ -79,5 +129,11 @@ namespace APIAutomation
             request.AddHeader("Content-Type", "application/json");
             request.AddHeader("Authorization", this.Token);
         }
+    }
+    public class ApiResponse<T>
+    {
+        public int code { get; set; }
+        public string meta { get; set; }
+        public T data { get; set; }
     }
 }

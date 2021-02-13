@@ -22,13 +22,13 @@ namespace APIAutomation
                     {
                         while (reader.Read())
                         {
-                            user.Id = reader.GetInt32(0);
-                            user.Name = reader.GetString(1);
-                            user.Email = reader.GetString(2);
-                            user.Gender = reader.GetString(3);
-                            user.Status = reader.GetString(4);
-                            user.CreatedAt = reader.GetDateTime(5);
-                            user.UpdatedAt = reader.GetDateTime(6);
+                            user.id = reader.GetInt32(0);
+                            user.name = reader.GetString(1);
+                            user.email = reader.GetString(2);
+                            user.gender = reader.GetString(3);
+                            user.status = reader.GetString(4);
+                            user.created_at = reader.GetDateTime(5);
+                            user.updated_at = reader.GetDateTime(6);
                         }
                     }
                 }
@@ -48,12 +48,12 @@ namespace APIAutomation
                     {
                         while (reader.Read())
                         {
-                            toDoList.Id = reader.GetInt32(0);
-                            toDoList.UserId = reader.GetInt32(1);
-                            toDoList.Title = reader.GetString(2);
-                            toDoList.Completed = reader.GetBoolean(3);
-                            toDoList.CreatedAt = reader.GetDateTime(4);
-                            toDoList.UpdatedAt = reader.GetDateTime(5);
+                            toDoList.id = reader.GetInt32(0);
+                            toDoList.user_id = reader.GetInt32(1);
+                            toDoList.title = reader.GetString(2);
+                            toDoList.completed = reader.GetBoolean(3);
+                            toDoList.created_at = reader.GetDateTime(4);
+                            toDoList.updated_at = reader.GetDateTime(5);
                         }
                     }
                 }
